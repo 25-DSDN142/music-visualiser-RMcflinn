@@ -1,4 +1,4 @@
-function draw_one_frame(words, vocal, drum, bass, other, counter) {
+/*function draw_one_frame(words, vocal, drum, bass, other, counter) {
   colorMode(HSB,100);
   background(255);
   rectMode(CENTER);
@@ -18,8 +18,8 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
 
   }
+*/
 
 
 
-}
 
