@@ -6,69 +6,266 @@ let r = 150;
 let petals = 6;
 
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(163, 233, 240);
-    //let squareWidth = width / cols;
-   // let squareHeight = height / rows;
-    //driver++
+  background(147, 162, 230);
+    let squareWidth = width / cols;
+    let squareHeight = height / rows;
+    driver++
 
-
-
-   //angleMode(DEGREES);
+   angleMode(DEGREES);
    stroke(255);
-   strokeWeight(4);
+   strokeWeight(0.1);
     noFill();
     translate(300, 300);
     circle(0, 0, r * 2);
 
     strokeWeight(32);
-    stroke(252, 238, 35);
     let x = r * cos(angle);
     let y = r * sin(angle);
 
+//-------------------------------------------------
 
 
- // loop through petals
+
+    for (let i = 0; i < petals; i++) {
+    let offset = (360 / petals) * i; // evenly spaced offset
+    let a = (angle + offset);     // angle for this ellipse 
+    let x = r * cos(a);
+    let y = r * sin(a);
+
+    noStroke();
+    fill(106, 91, 235, 100);
+
+    push();
+    translate(x, y);  
+    rotate(-10 + a);  // tangent to circle (facing inward)
+    ellipse(-40, 140, 300, 5);
+    pop();
+
+    push();
+    translate(x, y);  
+    rotate(10 + a);
+    ellipse(0, 0, 150, 30);
+
+    pop();
+  
+
+    push();
+    translate(x, y);  
+    rotate(-30 + a); 
+    ellipse(0, 40, 100, 30);
+    pop();
+
+   }
+   
+for (let i = 0; i < petals; i++) {
+    let offset = (360 / petals) * i; 
+    let a = (angle + offset) + 30;            
+    let x = r * cos(a);
+    let y = r * sin(a);
+    noStroke();
+    fill(106, 91, 235, 70);
+
+    push();
+    translate(x, y);  
+    rotate(10 + a); 
+    ellipse(-50, 0, 90, 65);
+    pop();
+
+    push();
+    translate(x, y);  
+    rotate(10 + a); 
+    ellipse( 30, 20, 10, 5);
+    pop();
+
+    push();
+    translate(x, y);  
+    rotate(-110 + a); 
+    ellipse( 30, 120, 110, 10);
+    pop();
+
+    push();
+    translate(x, y);  
+    rotate(-110 + a); 
+    ellipse( 30, 120, 110, 10);
+    pop();
+
+   }
+
+
+
+   for (let i = 0; i < petals; i++) {
+    let offset = (360 / petals) * i; 
+    let a = (angle + offset) + 30;            
+    let x = r * cos(a);
+    let y = r * sin(a);
+
+    noStroke();
+    fill(189, 83, 145, 80);
+  
+    push(); 
+    rotate(10 + a); 
+    ellipse(-30, 40, 140, 5);
+    pop();
+
+    push();
+    translate(x, y);  
+    rotate(10 + a); 
+    ellipse(-30, 40, 80, 50);
+    pop();
+ 
+
   for (let i = 0; i < petals; i++) {
-    let offset = (360 / petals) * i;  // evenly spaced offset
-    let a = angle + offset;              // angle for this ellipse
+    let offset = (360 / petals) * i; 
+    let a = (angle + offset) + 60;            
+    let x = r * cos(a);
+    let y = r * sin(a);
+
+    
+
+    fill(141, 144, 242, 130);
+
+    push();
+    translate(x, y);  
+    rotate(10 + a); 
+    ellipse(-80, 40, 120, 10);
+    pop();
+
+     push();
+    translate(x, y);  
+    rotate(-10 + a); 
+    ellipse(-80, 40, 60, 15);
+    pop();
+
+      push();
+    translate(x, y);  
+    rotate(-10 + a); 
+    ellipse(-170, 30, 10, 10);
+    pop();
+
+  }
+   for (let i = 0; i < petals; i++) {
+    let offset = (360 / petals) * i; 
+    let a = (angle + offset) + 60;            
+    let x = r * cos(a);
+    let y = r * sin(a);
+
+    fill(189, 83, 145, 30);
+
+    push();
+    translate(x, y);  
+    rotate(0 + a); 
+    ellipse(-80, 40, 15, 15);
+    pop();
+
+    push();
+    translate(x, y);  
+    rotate(0 + a); 
+    ellipse(-170, 20, 40, 25);
+    pop();
+
+
+
+
+
+
+
+   }
+
+  }
+
+/* for (let i = 0; i < petals2; i++) {
+    let offset = (360 / petals2) * i; 
+    let a = (angle + offset) + 30;            
     let x = r * cos(a);
     let y = r * sin(a);
 
     push();
-    fill(252, 238, 35, 150);
     noStroke();
+    fill(106, 91, 235, 70);
     translate(x, y);  
-    rotate(10 + a); // tangent to circle (facing inward)
-    ellipse(0, 0, 150, 20); 
+    rotate(40 + a); 
+    ellipse(40, 0, 100, 20);
     pop();
-  }
+
+   }
+    */
+
+    
+//whiskers-------------------------------------------------
+/*
+
+for (let i = 0; i < petals2; i++) {
+    let offset = (360 / petals2) * i; 
+    let a = (angle + offset) + 20;            
+    let x = r * cos(a);
+    let y = r * sin(a);
+
+    push();
+    noStroke();
+    fill(106, 91, 235, 70);
+    translate(x, y);  
+    rotate(20 + a); // tangent to circle (facing inward)
+    ellipse(0, 40, 100, 10);
+    pop();
+
+   }
+
+   for (let i = 0; i < petals2; i++) {
+    let offset = (360 / petals2) * i; 
+    let a = (angle + offset) + 10;            
+    let x = r * cos(a);
+    let y = r * sin(a);
+
+    push();
+    noStroke();
+    fill(106, 91, 235, 70);
+    translate(x, y);  
+    rotate(20 + a); // tangent to circle (facing inward)
+    ellipse(0, 40, 100, 10);
+    pop();
+
+   }
+
+*/
+
+
+
+
+
+
+
 
   
 
 
 
-  
+
+/*
 
  noStroke();
-fill(252, 238, 35, 180, 50);
-for (let i = 0; i < 5; i++) {
+fill(252, 150);
+for (let i = 0; i < 10; i++) {
   let offset = i * 15;
   let ox = r * cos(angle - offset * 0.5);
   let oy = r * sin(angle - offset * 0.5);
   ellipse(ox, oy, 20 - i*3, 20 - i*3);
 }
-
+*/
 
 
     //point(x, y);
 
-    angle += 0.5; //speed of rotation + vocal input
+    angle += 0; //speed of rotation + vocal input
      //speed of expansion + bass input
 
 
 
 
-}
+
+
+
+
+
 
 
 
@@ -126,10 +323,7 @@ for (let n = 0; n < 100; n++) {
       rect(x, y, squareWidth, squareHeight);
     }
   }
-}
-
-
-*/
+    }
 
 
 
@@ -155,7 +349,7 @@ for (let n = 0; n < 100; n++) {
 /*
 if(counter > 25){
 push();
-   seconds = counter / 62
+   seconds = counter / 60
     // if(counter >=50){
     translate(width/2, height/2);
 
@@ -165,18 +359,18 @@ push();
     stroke(250);
     strokeWeight(2);
 
-    for(var n = 0; n < 5; n++){
+    for(var i = 0; i < 5; i++){
         beginShape()
-         for (var r = 0; r < 360; r++){
-        var rad = map(sin(r * (seconds + other)), 3, 5, 100, 200)
-        var x = rad * cos(r)
-        var y = rad * sin(r)
-        vertex(x, y)
+         for (var i = 0; i < 360; i++){
+        var rad = map(sin(i * (seconds + other)), 3, 5, 100, 200)
+        var c = rad * cos(i)
+        var k = rad * sin(i)
+        vertex(c, k)
     }
     endShape(CLOSE)
    rotate((seconds + other))
 } 
 pop();
 }
-
 */
+}
