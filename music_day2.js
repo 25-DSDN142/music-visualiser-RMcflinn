@@ -4,35 +4,42 @@ let driver = 1;
 let angle = 0;
 let angle2 = 0;
 let angle3 = 0;
-let speed =0
-let speed2 = -0.0
-let speed3 = 0
+let speed = 0.04
+let speed2 = 0.02
+let speed3 = 0.
+
+let maxPoints = 0
+let direction = 1;
 
 let r = 150; 
-let petals = 5;
+let petals = 5 ;
 
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(5, 10, 30);
+  background(8, 13, 49);
     let squareWidth = width / cols;
     let squareHeight = height / rows;
     driver++
 
    angleMode(DEGREES);
    translate(300, 300);
+   noStroke();
 
-
+let smoothedDrum = lerp(0, drum, 0.3); // Smooths rapid jumps
+let scaleAmount = map(smoothedDrum, 0, 400, 0.7, 4);
+scale(scaleAmount);
 
 
 //-------------------------------------------------
 
+
 for (let i = 0; i < petals; i++) {
   let offset = (360 / petals) * i; // evenly spaced offset
-  let a = (angle + offset);        // angle for this ellipse 
+  let a = (angle + offset);  
   let x = r * cos(a);
   let y = r * sin(a);
 
   noStroke();
-  fill(126, 194, 237, 130);
+  fill(114, 87, 179, 200);
 
   // main outward line 
   push();
@@ -69,7 +76,7 @@ for (let i = 0; i < petals; i++) {
   // ellipse(-70, 40, 70, 70);
   pop();
 
-  angle += speed;
+  angle += 0.2;
 }
 
 
@@ -81,7 +88,7 @@ for (let i = 0; i < petals; i++) {
   let x = r * cos(a);
   let y = r * sin(a);
 
-  fill(2126, 194, 237, 130);
+  fill(209, 82, 156, 80);
 
   // pink centre petal
   push();
@@ -96,8 +103,8 @@ for (let i = 0; i < petals; i++) {
   rotate(0 + a); 
   ellipse(-30, 0, 140, 5);
   pop();
-
-  fill(126, 194, 237, 100);
+//------------------------//
+  fill(235, 192, 94, 150);
 
   // middle petal
   push();
@@ -120,7 +127,7 @@ for (let i = 0; i < petals; i++) {
   ellipse(0, 120, 110, 10);
   pop();
 
-  angle2 += speed3;
+  angle2 += (speed3 + other/ 400);
 
 
   //* INNER LAYER --------------------------------------------
@@ -130,7 +137,7 @@ for (let i = 0; i < petals; i++) {
     let x = r * cos(a);
     let y = r * sin(a);
 
-    fill(242, 205, 131, 30);
+    fill(240, 211, 146, 100);
 
     // long centre lines
     push();
@@ -153,7 +160,7 @@ for (let i = 0; i < petals; i++) {
     ellipse(-170, 30, 10, 10);
     pop();
 
-    angle3 += speed2;
+    angle3 += (speed2 + other/ 1500);
   }
 
 
@@ -164,7 +171,7 @@ for (let i = 0; i < petals; i++) {
     let x = r * cos(a);
     let y = r * sin(a);
 
-    fill(126, 194, 237, 90);
+    fill(259, 150);
 
     push();
     translate(x, y);  
@@ -175,9 +182,77 @@ for (let i = 0; i < petals; i++) {
     push();
     translate(x, y);  
     rotate(0 + a); 
-    ellipse(-80, 40, 15, 15);
+    ellipse(-80, 40, 10, 10);
     pop();
   }
+
+
+
+
+
+
+
+//---------------------------------
+
+push();
+  strokeWeight(10);
+  stroke(240, 211, 146, 1);
+  
+  let spiralRadius = 0; // Start at center
+  let spiralAngle = 0; // Starting angle
+  let rotation = 0; // Offset
+
+    for (let i = 0; i < maxPoints; i++) {
+    let x = spiralRadius * cos(spiralAngle - rotation);
+    let y = spiralRadius * sin(spiralAngle - rotation);
+    point(x, y);
+
+    spiralRadius += 0.3;
+    spiralAngle += 0.7; 
+  }
+  pop();
+
+  maxPoints += 0.5 * direction;
+  if (maxPoints > 2000) {
+    maxPoints = 2000;
+    direction = -1; // Switch to inward
+  } else if (maxPoints < 0) {
+    maxPoints = 0;
+    direction = 1; // Switch to outward
+  }
+
+    
+  // i want to map the spiral going in/ out to the bars of the song 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -221,61 +296,7 @@ for (let i = 0; i < petals; i++) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* for (let i = 0; i < petals2; i++) {
-    let offset = (360 / petals2) * i; 
-    let a = (angle + offset) + 30;            
-    let x = r * cos(a);
-    let y = r * sin(a);
-
-    push();
-    noStroke();
-    fill(106, 91, 235, 70);
-    translate(x, y);  
-    rotate(40 + a); 
-    ellipse(40, 0, 100, 20);
-    pop();
-
-   }
-    */
+    
 
     
 //whiskers-------------------------------------------------
@@ -327,23 +348,13 @@ for (let i = 0; i < petals2; i++) {
 
 
 
-/*
 
- noStroke();
-fill(252, 150);
-for (let i = 0; i < 10; i++) {
-  let offset = i * 15;
-  let ox = r * cos(angle - offset * 0.5);
-  let oy = r * sin(angle - offset * 0.5);
-  ellipse(ox, oy, 20 - i*3, 20 - i*3);
-}
-*/
+
 
 
     //point(x, y);
 
-    angle += 0; //speed of rotation + vocal input
-     //speed of expansion + bass input
+    
 
 
 
