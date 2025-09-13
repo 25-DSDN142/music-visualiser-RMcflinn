@@ -2,160 +2,169 @@ var cols = 20;
 var rows = 20;
 let driver = 1; 
 let angle = 0;
+let angle2 = 0;
+let angle3 = 0;
+let speed =0
+let speed2 = -0.0
+let speed3 = 0
+
 let r = 150; 
-let petals = 6;
+let petals = 5;
 
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(147, 162, 230);
+  background(5, 10, 30);
     let squareWidth = width / cols;
     let squareHeight = height / rows;
     driver++
 
    angleMode(DEGREES);
-   stroke(255);
-   strokeWeight(0.1);
-    noFill();
-    translate(300, 300);
-    circle(0, 0, r * 2);
+   translate(300, 300);
 
-    strokeWeight(32);
-    let x = r * cos(angle);
-    let y = r * sin(angle);
+
+
 
 //-------------------------------------------------
 
-
-
-    for (let i = 0; i < petals; i++) {
-    let offset = (360 / petals) * i; // evenly spaced offset
-    let a = (angle + offset);     // angle for this ellipse 
-    let x = r * cos(a);
-    let y = r * sin(a);
-
-    noStroke();
-    fill(106, 91, 235, 100);
-
-    push();
-    translate(x, y);  
-    rotate(-10 + a);  // tangent to circle (facing inward)
-    ellipse(-40, 140, 300, 5);
-    pop();
-
-    push();
-    translate(x, y);  
-    rotate(10 + a);
-    ellipse(0, 0, 150, 30);
-
-    pop();
-  
-
-    push();
-    translate(x, y);  
-    rotate(-30 + a); 
-    ellipse(0, 40, 100, 30);
-    pop();
-
-   }
-   
 for (let i = 0; i < petals; i++) {
+  let offset = (360 / petals) * i; // evenly spaced offset
+  let a = (angle + offset);        // angle for this ellipse 
+  let x = r * cos(a);
+  let y = r * sin(a);
+
+  noStroke();
+  fill(126, 194, 237, 130);
+
+  // main outward line 
+  push();
+  translate(x, y);  
+  rotate(-10 + a);  
+  ellipse(-40, 140, 300, 5);
+  pop();
+
+  // high outside line
+  push();
+  translate(x, y);  
+  rotate(-80 + a); 
+  ellipse(-50, 120, 110, 5);
+  pop();
+
+  // main petal 
+  push(); 
+  translate(x, y);  
+  rotate(10 + a);
+  ellipse(0, 0, 150, 60);
+  pop();
+
+  // main petal detail
+  push(); 
+  translate(x, y);  
+  rotate(-30 + a); 
+  ellipse(0, 40, 130, 40);
+  pop();
+
+  // blue centre petal 
+  push();
+  translate(x, y);  
+  rotate(70 + a); 
+  // ellipse(-70, 40, 70, 70);
+  pop();
+
+  angle += speed;
+}
+
+
+//* MIDDLE LAYER ---------------------------------------------
+push();
+for (let i = 0; i < petals; i++) {
+  let offset = (360 / petals) * i; 
+  let a = (angle2 + offset) + 30;            
+  let x = r * cos(a);
+  let y = r * sin(a);
+
+  fill(2126, 194, 237, 130);
+
+  // pink centre petal
+  push();
+  translate(x, y);  
+  rotate(40 + a); 
+  ellipse(-10, 40, 70, 70);
+  pop();
+
+  // centre hexagon lines 
+  push();
+  translate(x, y);  
+  rotate(0 + a); 
+  ellipse(-30, 0, 140, 5);
+  pop();
+
+  fill(126, 194, 237, 100);
+
+  // middle petal
+  push();
+  translate(x, y);  
+  rotate(0 + a); 
+  ellipse(-70, 0, 120, 65);
+  pop();
+
+  // outer small dot
+  push();
+  translate(x, y);  
+  rotate(0 + a); 
+  ellipse(30, 20, 20, 5);
+  pop();
+
+  // yellow lines
+  push();
+  translate(x, y);  
+  rotate(-30 + a); 
+  ellipse(0, 120, 110, 10);
+  pop();
+
+  angle2 += speed3;
+
+
+  //* INNER LAYER --------------------------------------------
+  for (let i = 0; i < petals; i++) {
     let offset = (360 / petals) * i; 
-    let a = (angle + offset) + 30;            
+    let a = (angle3 + offset) + 60;            
     let x = r * cos(a);
     let y = r * sin(a);
-    noStroke();
-    fill(106, 91, 235, 70);
 
+    fill(242, 205, 131, 30);
+
+    // long centre lines
     push();
     translate(x, y);  
     rotate(10 + a); 
-    ellipse(-50, 0, 90, 65);
+    ellipse(-70, 40, 110, 45);
     pop();
 
-    push();
-    translate(x, y);  
-    rotate(10 + a); 
-    ellipse( 30, 20, 10, 5);
-    pop();
-
-    push();
-    translate(x, y);  
-    rotate(-110 + a); 
-    ellipse( 30, 120, 110, 10);
-    pop();
-
-    push();
-    translate(x, y);  
-    rotate(-110 + a); 
-    ellipse( 30, 120, 110, 10);
-    pop();
-
-   }
-
-
-
-   for (let i = 0; i < petals; i++) {
-    let offset = (360 / petals) * i; 
-    let a = (angle + offset) + 30;            
-    let x = r * cos(a);
-    let y = r * sin(a);
-
-    noStroke();
-    fill(189, 83, 145, 80);
-  
+    // centre top line
     push(); 
-    rotate(10 + a); 
-    ellipse(-30, 40, 140, 5);
+    translate(x, y);  
+    rotate(-10 + a); 
+    ellipse(-90, 40, 85, 5);
     pop();
 
+    // centre outer small dots 
     push();
     translate(x, y);  
-    rotate(10 + a); 
-    ellipse(-30, 40, 80, 50);
+    rotate(-40 + a); 
+    ellipse(-170, 30, 10, 10);
     pop();
- 
 
+    angle3 += speed2;
+  }
+
+
+  //* INNER MOST LAYER ---------------------------------------
   for (let i = 0; i < petals; i++) {
     let offset = (360 / petals) * i; 
     let a = (angle + offset) + 60;            
     let x = r * cos(a);
     let y = r * sin(a);
 
-    
-
-    fill(141, 144, 242, 130);
-
-    push();
-    translate(x, y);  
-    rotate(10 + a); 
-    ellipse(-80, 40, 120, 10);
-    pop();
-
-     push();
-    translate(x, y);  
-    rotate(-10 + a); 
-    ellipse(-80, 40, 60, 15);
-    pop();
-
-      push();
-    translate(x, y);  
-    rotate(-10 + a); 
-    ellipse(-170, 30, 10, 10);
-    pop();
-
-  }
-   for (let i = 0; i < petals; i++) {
-    let offset = (360 / petals) * i; 
-    let a = (angle + offset) + 60;            
-    let x = r * cos(a);
-    let y = r * sin(a);
-
-    fill(189, 83, 145, 30);
-
-    push();
-    translate(x, y);  
-    rotate(0 + a); 
-    ellipse(-80, 40, 15, 15);
-    pop();
+    fill(126, 194, 237, 90);
 
     push();
     translate(x, y);  
@@ -163,15 +172,93 @@ for (let i = 0; i < petals; i++) {
     ellipse(-170, 20, 40, 25);
     pop();
 
-
-
-
-
-
-
-   }
-
+    push();
+    translate(x, y);  
+    rotate(0 + a); 
+    ellipse(-80, 40, 15, 15);
+    pop();
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* for (let i = 0; i < petals2; i++) {
     let offset = (360 / petals2) * i; 
