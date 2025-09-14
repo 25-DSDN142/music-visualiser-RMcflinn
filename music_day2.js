@@ -1,5 +1,5 @@
-var cols = 20;
-var rows = 20;
+var cols = 11;
+var rows = 11;
 let driver = 1; 
 let angle = 0;
 let angle2 = 0;
@@ -14,18 +14,28 @@ let direction = 1;
 let r = 150; 
 let petals = 5 ;
 
+// Array of colors for the grid to flash
+let colourArray = [
+  [255, 100, 100, 50], // Semi-transparent red, //
+  [100, 100, 255, 50], // Semi-transparent blue
+  [255, 255, 100, 50], // Semi-transparent yellow
+  [255, 100, 255, 50]  // Semi-transparent magenta
+];
+
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
-  background(8, 13, 49);
+  background(13, 49);
+  angleMode(DEGREES);
+  translate(300, 300);
+  noStroke();
+
     let squareWidth = width / cols;
     let squareHeight = height / rows;
-    driver++
-
-   angleMode(DEGREES);
-   translate(300, 300);
-   noStroke();
+    driver++;
+  
+  
 
 let smoothedDrum = lerp(0, drum, 0.3); // Smooths rapid jumps
-let scaleAmount = map(smoothedDrum, 0, 400, 0.7, 4);
+let scaleAmount = map(smoothedDrum, 0, 400, 0.75, 4);
 scale(scaleAmount);
 
 
@@ -192,7 +202,9 @@ for (let i = 0; i < petals; i++) {
 
 
 
-//---------------------------------
+
+
+//spiral-------------------------------------
 
 push();
   strokeWeight(10);
@@ -215,45 +227,49 @@ push();
   maxPoints += 0.5 * direction;
   if (maxPoints > 2000) {
     maxPoints = 2000;
-    direction = -1; // Switch to inward
+    direction = -1; // inward
   } else if (maxPoints < 0) {
     maxPoints = 0;
-    direction = 1; // Switch to outward
+    direction = 1; // outward
   }
 
-    
   // i want to map the spiral going in/ out to the bars of the song 
+//-----------------------------------------------------
 
 
 
+  push();
+  resetMatrix(); // Reset transformations to draw grid in canvas coordinates
+  let flashThreshold = map(vocal, 0, 60, 0.05, 0.02); // Adjusted for slower flashing
 
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      let x = i * squareWidth;
+      let y = j * squareHeight;
 
+      // Random colors based on flashThreshold
+      if (random() < flashThreshold) {
+        let colorIndex = floor(random(colourArray.length));
+        fill(colourArray[colorIndex]);
+      } else {
+        fill(8, 13, 49, 0);}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      noStroke();
+      rect(x, y, squareWidth, squareHeight);
+    }
+  }
+  pop();
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -300,86 +316,6 @@ push();
 
     
 //whiskers-------------------------------------------------
-/*
-
-for (let i = 0; i < petals2; i++) {
-    let offset = (360 / petals2) * i; 
-    let a = (angle + offset) + 20;            
-    let x = r * cos(a);
-    let y = r * sin(a);
-
-    push();
-    noStroke();
-    fill(106, 91, 235, 70);
-    translate(x, y);  
-    rotate(20 + a); // tangent to circle (facing inward)
-    ellipse(0, 40, 100, 10);
-    pop();
-
-   }
-
-   for (let i = 0; i < petals2; i++) {
-    let offset = (360 / petals2) * i; 
-    let a = (angle + offset) + 10;            
-    let x = r * cos(a);
-    let y = r * sin(a);
-
-    push();
-    noStroke();
-    fill(106, 91, 235, 70);
-    translate(x, y);  
-    rotate(20 + a); // tangent to circle (facing inward)
-    ellipse(0, 40, 100, 10);
-    pop();
-
-   }
-
-*/
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-    //point(x, y);
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -448,10 +384,7 @@ for (let n = 0; n < 100; n++) {
 if(counter > 25){
 push();
    seconds = counter / 60
-    // if(counter >=50){
-    translate(width/2, height/2);
-
-    angleMode(DEGREES);
+    // if(counter >=50)
 
     fill(5, 235, 237, 50);
     stroke(250);
@@ -469,6 +402,6 @@ push();
    rotate((seconds + other))
 } 
 pop();
-}
-*/
+}*/
+
 }
