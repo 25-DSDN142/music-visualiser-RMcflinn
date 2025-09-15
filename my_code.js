@@ -1,5 +1,5 @@
-let cols = 11;
-let rows = 11;
+let cols =10;
+let rows = 10;
 let driver = 1;
 let angle = 0;
 let angle2 = 0;
@@ -13,9 +13,9 @@ let r = 150;
 let petals = 5;
 
 let colourArray = [
-  [235, 52, 42, 70],   // Red
-  [255, 255, 100, 70], // Yellow
-  [255, 100, 255, 70]  // Magenta
+  [235, 52, 42, 80],   // Red
+  [255, 255, 100, 80], // Yellow
+  [255, 100, 255, 80]  // Magenta
 ];
 
 function draw_one_frame(words, vocal, drum, bass, other, counter) {
@@ -31,7 +31,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
 
  //drum input moves flower motif in/ out
   let smoothedDrum = lerp(0, drum, 0.3);
-  let scaleAmount = map(smoothedDrum, 0, 400, 0.75, 4);
+  let scaleAmount = map(smoothedDrum, 0, 350, 0.75, 4);
   scale(scaleAmount);
 
   // --- Outer Petal Layer ---
@@ -183,7 +183,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // --- Spiral ---
   push();
     strokeWeight(13);
-    stroke(250, 230, 216, 4);
+    stroke(250, 230, 226, 4);
 
     let spiralRadius = 0; // Start at center
     let spiralAngle = 0; // Starting angle
@@ -215,7 +215,7 @@ function draw_one_frame(words, vocal, drum, bass, other, counter) {
   // --- Grid ---
   push();
   resetMatrix();
-  let flashThreshold = map(vocal, 0, 60, 0.06, 0.02);
+  let flashThreshold = map(vocal, 0, 50, 0.07, 0.03);
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
